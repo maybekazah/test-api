@@ -20,8 +20,21 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'image',
+        'about',
+        'type',
+        'github',
+        'city',
+        'phone',
+        'is_finished',
+        'birthday',
         'password',
     ];
+
+    public function roles()
+    {
+        $this->belongsToMany(Role::class, 'user_roles');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
