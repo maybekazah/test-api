@@ -29,6 +29,7 @@ class RegisterRequest extends FormRequest
             'city' => 'required|string',
             'phone' => 'required|string',
             'birthday' => 'required|string',
+//            'password' => 'required|string',
         ];
     }
 }
