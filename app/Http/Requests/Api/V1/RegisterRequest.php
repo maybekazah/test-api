@@ -27,6 +27,7 @@ class RegisterRequest extends FormRequest
             'type' => 'required|string',
             'github' => 'required|string',
             'city' => 'required|string',
+//            'is_finished' => 'boolean',
             'phone' => 'required|string',
             'birthday' => 'required|string',
 //            'password' => 'required|string',

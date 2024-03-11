@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\DTO\AuthRegisterDto;
+use App\DTO\DTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\RegisterRequest;
 use App\Http\Resources\UserResource;
@@ -21,14 +23,13 @@ class AuthController extends Controller
         $password = mb_strimwidth(md5(random_int(1, 1000000)), 1, 8);
         $request = $request->validated();
         $request['password'] = Hash::make($password);
+        $request['is_finished'] = false;
+        $user = User::query()->create($request);
+        Auth::login($user, true);
 
-        if (User::query()->create($request)) {
-
-            Auth::attempt($request);
-            return response()->json(['message' => 'success'], 200);
-        }
-
-        return response()->json(['message' => 'Unknown Error '], 520);
+        $token = $user->createToken('authToken')->accessToken;
+        $dto = AuthRegisterDto::create(['user' => $user, 'token' => $token->token, 'password' => $password]);
+        return UserResource::make($dto);
 
     }
 

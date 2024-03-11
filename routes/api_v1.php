@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth.sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('departments', [\App\Http\Controllers\Api\V1\DepartmentController::class, 'index'])->name('departments.index');
 
