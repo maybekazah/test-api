@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('image')->nullable();
             $table->string('about')->nullable();
-            $table->string('type')->default(\App\Enums\Traits\TypeEnum::BACK->value);
+            $table->string('type')->default(\App\Enums\TypeEnum::BACK->value);
             $table->string('github')->nullable();
             $table->string('city')->nullable();
             $table->string('phone')->nullable();

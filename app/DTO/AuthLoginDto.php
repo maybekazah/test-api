@@ -5,14 +5,14 @@ namespace App\DTO;
 use App\DTO\DTO;
 use App\Models\User;
 
-class AuthRegisterDto extends DTO
+class AuthLoginDto extends DTO
 {
     public function __construct(
         public User   $user,
-        public string $token,
+        public array $token,
         public string $password,
     )
-
     {
+
     }
 }

@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ *
+ * @mixin User
+ */
 class UserResource extends JsonResource
 {
     /**
@@ -15,22 +19,20 @@ class UserResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'token' => $this->token,
-            'user' => [
-                'id' => $this->user->id,
-                'login' => $this->user->login,
-                'name' => $this->user->name,
-                'email' => $this->user->email,
-                'image' => $this->user->image,
-                'about' => $this->user->about,
-                'type' => $this->user->type,
-                'github' => $this->user->github,
-                'city' => $this->user->city,
-                'is_finished' => $this->user->is_finished,
-                'phone' => $this->user->phone,
-                'birthday' => $this->user->birthday,
-            ],
-            'password' => $this->password,
+
+            'id' => $this->id,
+            'login' => $this->login,
+            'name' => $this->name,
+            'email' => $this->email,
+            'image' => $this->image,
+            'about' => $this->about,
+            'type' => $this->type,
+            'github' => $this->github,
+            'city' => $this->city,
+            'is_finished' => $this->is_finished,
+            'phone' => $this->phone,
+            'birthday' => $this->birthday,
+
         ];
     }
 }

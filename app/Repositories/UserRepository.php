@@ -5,13 +5,26 @@ namespace App\Repositories;
 use App\Models\User;
 use App\Repositories\Abstract\IUserRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Prettus\Repository\Eloquent\BaseRepository;
 
-class UserRepository implements IUserRepository
+class UserRepository extends BaseRepository implements IUserRepository
 {
-    public function createUser($request)
+    public function model(): string
     {
-        $user = User::query()->create($request);
-        Auth::login($user, true);
-        return $user;
+        return User::class;
+    }
+
+//    public function getUserWithJoin()
+//    {
+//        return $this->model->newQuery()->join()->where();
+//    }
+    public function createUser(User $user, $input)
+    {
+        return DB::transaction(function () use ($user, $input) {
+            $user->fill($input);
+            $user->save();
+            return $user;
+        });
     }
 }

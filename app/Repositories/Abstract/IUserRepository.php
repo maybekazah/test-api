@@ -2,7 +2,10 @@
 
 namespace App\Repositories\Abstract;
 
-interface IUserRepository
+use App\Models\User;
+use Prettus\Repository\Contracts\RepositoryInterface;
+
+interface IUserRepository extends RepositoryInterface
 {
-    public function createUser($request);
+    public function createUser(User $user, $input);
 }
