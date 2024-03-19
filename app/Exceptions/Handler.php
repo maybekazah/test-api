@@ -2,6 +2,9 @@
 
 namespace App\Exceptions;
 
+
+use ErrorException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -23,8 +26,12 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+//        $this->renderable(function (ErrorException $e) {
+//            return response()->json(['message' => 'error'], 500);
+//        });
+////        $this->renderable(function (QueryException $e) {
+////            return response()->json(['message' => 'error'], 500);
+////        });
+
     }
 }

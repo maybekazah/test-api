@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use App\DTO\AuthRegisterDto;
-use App\DTO\AuthShowUserDto;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  *
- * @mixin AuthShowUserDtoDto
+ * @mixin AuthRegisterDto
  */
-class UserShowResource extends JsonResource
+class AuthResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,7 +19,9 @@ class UserShowResource extends JsonResource
     public function toArray($request): array
     {
         return [
+            'token' => $this->token,
             'user' => UserResource::make($this->user),
+            'password' => $this->password,
         ];
     }
 }

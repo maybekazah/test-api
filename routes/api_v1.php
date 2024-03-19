@@ -1,23 +1,26 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('departments', [\App\Http\Controllers\Api\V1\DepartmentController::class, 'index'])->name('departments.index');
+    Route::get('departments', [\App\Http\Controllers\Api\V1\DepartmentController::class, 'index']);
+    Route::get('workers', [\App\Http\Controllers\Api\V1\WorkerController::class, 'index']);
+    Route::get('workers/{user}', [\App\Http\Controllers\Api\V1\WorkerController::class, 'show']);
+    Route::get('user', [\App\Http\Controllers\Api\V1\UserController::class, 'show']);
+    Route::patch('user', [\App\Http\Controllers\Api\V1\UserController::class, 'update']);
+    Route::delete('logout', [\App\Http\Controllers\Api\V1\AuthController::class, 'logout']);
 
-    Route::get('workers', [\App\Http\Controllers\Api\V1\WorkerController::class, 'index'])->name('workers.index');
-    Route::get('workers/{user}', [\App\Http\Controllers\Api\V1\WorkerController::class, 'show'])->name('workers.show');
-
-    Route::get('user', [\App\Http\Controllers\Api\V1\UserController::class, 'show'])->name('user.show');
-    Route::patch('user', [\App\Http\Controllers\Api\V1\UserController::class, 'update'])->name('user.update');
 });
 
-Route::post('auth/login', [\App\Http\Controllers\Api\V1\AuthController::class, 'login'])->name('auth.login');
-Route::post('auth/register', [\App\Http\Controllers\Api\V1\AuthController::class, 'register'])->name('auth.register');
-Route::post('auth/restore', [\App\Http\Controllers\Api\V1\AuthController::class, 'restore'])->name('auth.restore');
-Route::post('auth/restore/confirm', [\App\Http\Controllers\Api\V1\AuthController::class, 'restoreConfirm'])->name('auth.restore.confirm');
+Route::middleware('guest')->group(function () {
 
+    Route::post('auth/login', [\App\Http\Controllers\Api\V1\AuthController::class, 'login']);
+    Route::post('auth/register', [\App\Http\Controllers\Api\V1\AuthController::class, 'register']);
+    Route::post('auth/forgot-password', [\App\Http\Controllers\Api\V1\AuthController::class, 'forgotPassword']);
+    Route::post('auth/password-reset', [\App\Http\Controllers\Api\V1\AuthController::class, 'passwordReset'])
+        ->name('password.reset');;
+
+});
 

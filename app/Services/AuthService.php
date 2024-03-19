@@ -2,18 +2,17 @@
 
 namespace App\Services;
 
-use App\DTO\AuthLoginDto;
-use App\DTO\AuthRegisterDto;
-use App\DTO\AuthShowUserDto;
+use App\DTO\AuthDto;
+use App\Exceptions\LoginDataException;
+use App\Exceptions\LoginEmailException;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Services\Abstract\IAuthService;
-use http\Env\Response;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Support\Facades\Password;
+use App\Http\Requests\Api\V1\ForgotPasswordRequest;
+
 
 class AuthService implements IAuthService
 
@@ -27,24 +26,16 @@ class AuthService implements IAuthService
 
     public function login(array $input)
     {
-        if (\auth()->attempt($input)) {
-            $user = \auth()->user();
-
-            $password = $input['password'];
-
-
-//            Токен должен выдаваться не в хеше!! переделать
-
-//            $token = DB::table('personal_access_tokens')
-//                ->where('tokenable_id', $user->id)
-//                ->pluck('token')
-//                ->toArray();
-
-            $token = $user->;
-            dd($token);
-            return AuthLoginDto::create(['user' => $user, 'token' => $token, 'password' => $password]);
+        $password = $input['password'];
+        if (!$user = User::query()->where('email', '=', $input['email'])->first()) {
+            throw new LoginEmailException('Такой почты не существует', 400);
         }
-        return ['error'];
+
+        if (!Hash::check($password, $user->password)) {
+            throw new LoginDataException('Ошибка в заполнении данных', 400);
+        }
+        $token = $user->createToken('authToken')->plainTextToken;
+        return AuthDto::create(['user' => $user, 'token' => $token, 'password' => $password]);
 
     }
 
@@ -58,13 +49,22 @@ class AuthService implements IAuthService
         Auth::login($user, true);
 
         $token = $user->createToken('authToken')->plainTextToken;
-        return AuthRegisterDto::create(['user' => $user, 'token' => $token, 'password' => $password]);
+        return AuthDto::create(['user' => $user, 'token' => $token, 'password' => $password]);
 
     }
 
-    public function showUser()
-    {
-        $user = auth()->user();
-        return AuthShowUserDto::create(['user' => $user]);
-    }
+//    public function forgotPassword(ForgotPasswordRequest $request)
+//    {
+//        $request->validated();
+//        $status = Password::sendResetLink($request->only('email'));
+//        dd($status);
+//
+//        return response()->json(['message' => 'success'], 200);
+//    }
+//
+//    public function passwordReset(array $input)
+//    {
+//        return response()->json();
+//    }
+
 }
