@@ -11,7 +11,7 @@ use App\Services\Abstract\IAuthService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use App\Http\Requests\Api\V1\ForgotPasswordRequest;
+
 
 
 class AuthService implements IAuthService
@@ -32,7 +32,7 @@ class AuthService implements IAuthService
         }
 
         if (!Hash::check($password, $user->password)) {
-            throw new LoginDataException('Ошибка в заполнении данных', 400);
+            throw new LoginDataException('Неверный пароль', 400);
         }
         $token = $user->createToken('authToken')->plainTextToken;
         return AuthDto::create(['user' => $user, 'token' => $token, 'password' => $password]);
@@ -53,18 +53,22 @@ class AuthService implements IAuthService
 
     }
 
-//    public function forgotPassword(ForgotPasswordRequest $request)
-//    {
-//        $request->validated();
-//        $status = Password::sendResetLink($request->only('email'));
-//        dd($status);
-//
-//        return response()->json(['message' => 'success'], 200);
-//    }
-//
-//    public function passwordReset(array $input)
-//    {
-//        return response()->json();
-//    }
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+        return response()->json(['message' => 'logged out'], 200);
+    }
 
+    public function forgotPassword(array $input)
+    {
+        Password::sendResetLink($input);
+        return response()->json(['message' => 'ссылка для восстановления была отправлена на почту'], 200);
+    }
+
+    public function passwordReset(array $input)
+    {
+
+        return response()->json(['message' => 'какое то сообщение'], 200);
+
+    }
 }
