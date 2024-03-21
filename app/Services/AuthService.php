@@ -68,7 +68,7 @@ class AuthService implements IAuthService
     public function passwordReset(array $input)
     {
 
-        return response()->json(['message' => 'какое то сообщение'], 200);
+//        return response()->json(['message' => 'какое то сообщение'], 200);
 
     }
 }
