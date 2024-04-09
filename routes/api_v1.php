@@ -14,13 +14,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
-//Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function () {
 
     Route::post('auth/login', [\App\Http\Controllers\Api\V1\AuthController::class, 'login']);
     Route::post('auth/register', [\App\Http\Controllers\Api\V1\AuthController::class, 'register']);
     Route::post('auth/forgot-password', [\App\Http\Controllers\Api\V1\AuthController::class, 'forgotPassword']);
     Route::post('auth/password-reset', [\App\Http\Controllers\Api\V1\AuthController::class, 'passwordReset'])
-        ->name('password.reset');;
+        ->name('password.reset');
 
-//});
+});
 
