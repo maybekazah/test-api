@@ -22,6 +22,13 @@ class AdminPanelController extends Controller
         return view('admin.login');
     }
 
+    public function logout()
+    {
+        auth()->logout();
+        session()->flash('message', 'Вы вышли из аккаунта');
+        return redirect()->route('admin.index');
+    }
+
 
     public function loginProcess(AdminLoginRequest $request)
     {
