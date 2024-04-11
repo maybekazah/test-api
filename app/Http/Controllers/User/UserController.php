@@ -39,7 +39,8 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        //
+        $user = User::query()->create($request->validated());
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -47,7 +48,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::query()->findOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -55,7 +57,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::query()->findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -63,7 +66,9 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, string $id)
     {
-        //
+        User::query()->where('id', $id)->update($request->validated());
+        $user = User::query()->findOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     /**

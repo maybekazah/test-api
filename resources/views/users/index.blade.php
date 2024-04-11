@@ -13,7 +13,7 @@
             </div>
             <div class="list-group">
                 @foreach($users as $user)
-                    <a href="{{route('users.edit', $user['id'])}}"
+                    <a href="{{route('users.show', $user['id'])}}"
                        class="list-group-item list-group-item-action">{{$user['name']}}</a>
                 @endforeach
             </div>
