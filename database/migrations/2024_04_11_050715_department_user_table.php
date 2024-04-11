@@ -4,17 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('user_roles', function (Blueprint $table) {
+        Schema::create('department_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('department_id')->constrained()->restrictOnDelete()->restrictOnUpdate();
             $table->foreignId('user_id')->constrained()->restrictOnDelete()->restrictOnUpdate();
-            $table->foreignId('role_id')->constrained()->restrictOnDelete()->restrictOnUpdate();
-            $table->unique(['user_id', 'role_id']);
+            $table->unique(['department_id', 'user_id']);
             $table->timestamps();
         });
     }
@@ -24,7 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('department_user');
     }
 };
-

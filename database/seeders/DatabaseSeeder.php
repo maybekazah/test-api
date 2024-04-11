@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Enums\RoleEnum;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -15,18 +17,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
-             'name' => 'user',
-             'email' => 'user@user.com',
-             'password' => Hash::make('password'),
-         ]);
+// админ создается первый с айдишником 1
 
+        \App\Models\User::query()->updateOrCreate([
+            'name' => '123',
+            'email' => '123@123.com',
+            'password' => Hash::make('123123'),
+        ]);
+
+// таблица ролей заполнение
         $roles = RoleEnum::values();
         foreach ($roles as $role) {
             Role::query()->firstOrCreate(['type' => $role]);
         }
+
+// запись в таблице user_roles, присваеваем роль админу
+        DB::table('role_user')->insert([
+            'user_id' => 1,
+            'role_id' => 3
+        ]);
+
+        \App\Models\User::factory(10)->create();
+
 
     }
 }

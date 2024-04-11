@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->default(\App\Enums\DepartmentEnum::PRODUCTION);
             $table->timestamps();
         });
     }

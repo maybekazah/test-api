@@ -31,9 +31,15 @@ class User extends Authenticatable
         'password',
     ];
 
+
     public function roles()
     {
-        $this->belongsToMany(Role::class, 'user_roles');
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    public function departnemts()
+    {
+        return $this->belongsToMany(Department::class, 'department_user');
     }
 
     /**
