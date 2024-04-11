@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserStoreRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
+    public function __construct(
+        protected UserService $userService,
+    )
+    {
+
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +37,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         //
     }
@@ -52,7 +61,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
         //
     }
