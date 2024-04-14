@@ -32,6 +32,7 @@ class UserStoreRequest extends FormRequest
             'city' => 'required|string',
             'phone' => 'required|string',
             'birthday' => 'required|string',
+            'roles' => 'string',
         ];
     }
 }

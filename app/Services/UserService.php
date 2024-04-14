@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\RoleEnum;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Models\User;
 use App\Services\Abstract\IUserService;
@@ -16,12 +17,15 @@ class UserService implements IUserService
 
     public function create()
     {
+        return RoleEnum::values();
 
     }
 
     public function store(array $input)
     {
-        return User::query()->create($input);
+        $user = User::query()->create($input);
+        $user->roles()->sync($input['roles'] ?? []);
+        return $user;
     }
 
     public function show(string $id)

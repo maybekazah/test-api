@@ -35,6 +35,7 @@ class UserUpdateRequest extends FormRequest
             'phone' => 'string',
             'is_finished' => 'boolean',
             'birthday' => 'string',
+            'roles' => 'string',
         ];
     }
 }
