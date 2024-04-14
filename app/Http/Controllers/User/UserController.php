@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = $this->userService->index();
         return view('users.index', compact('users'));
     }
 
@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $user = User::query()->create($request->validated());
+        $user = $this->userService->store($request->validated());
         return view('users.show', compact('user'));
     }
 
@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::query()->findOrFail($id);
+        $user = $this->userService->show($id);
         return view('users.show', compact('user'));
     }
 
@@ -57,7 +57,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::query()->findOrFail($id);
+        $user = $this->userService->edit($id);
         return view('users.edit', compact('user'));
     }
 
@@ -66,8 +66,7 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, string $id)
     {
-        User::query()->where('id', $id)->update($request->validated());
-        $user = User::query()->findOrFail($id);
+        $user = $this->userService->update($request->validated(), $id);
         return view('users.show', compact('user'));
     }
 
@@ -76,6 +75,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+//
     }
 }

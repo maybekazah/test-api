@@ -11,13 +11,13 @@ interface IUserService
 
     public function create();
 
-    public function store(UserStoreRequest $request);
+    public function store(array $input);
 
     public function show(string $id);
 
     public function edit(string $id);
 
-    public function update(UserUpdateRequest $request, string $id);
+    public function update(array $input, string $id);
 
     public function destroy(string $id);
 }

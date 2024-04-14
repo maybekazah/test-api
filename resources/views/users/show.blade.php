@@ -19,5 +19,8 @@
             <div class="container">
                 <a href="{{route('users.edit', $user['id'])}}">Edit</a>
             </div>
+            <div class="container">
+                <a href="{{route('users.destroy', $user['id'])}}">Delete</a>
+            </div>
         </div>
 @endsection('body')
