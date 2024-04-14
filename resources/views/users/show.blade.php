@@ -20,7 +20,11 @@
                 <a href="{{route('users.edit', $user['id'])}}">Edit</a>
             </div>
             <div class="container">
-                <a href="{{route('users.destroy', $user['id'])}}">Delete</a>
+                <form action="{{route('users.destroy', $user['id'])}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger m-3" type="submit">Delete</button>
+                </form>
             </div>
         </div>
 @endsection('body')

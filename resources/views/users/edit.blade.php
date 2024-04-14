@@ -43,9 +43,7 @@
                 @enderror
                 <label for="birthday" class="form-label">birthday</label>
                 <input class="form-control mb-3" type="text" name="birthday" id="birthday" placeholder="{{$user['birthday']}}">
-
                 <button class="btn btn-success m-3" type="submit">Edit</button>
-
 
             </form>
         </div>

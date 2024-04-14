@@ -12,6 +12,7 @@
                 </a>
             </div>
             <div class="list-group">
+                {{session('message') ?? NULL}}
                 @foreach($users as $user)
                     <a href="{{route('users.show', $user['id'])}}"
                        class="list-group-item list-group-item-action">{{$user['name']}}</a>

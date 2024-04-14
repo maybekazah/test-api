@@ -75,6 +75,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-//
+        $this->userService->destroy($id);
+        return $this->index();
     }
 }

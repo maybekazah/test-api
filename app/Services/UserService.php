@@ -42,6 +42,6 @@ class UserService implements IUserService
 
     public function destroy(string $id)
     {
-//
+        return User::destroy($id);
     }
 }
