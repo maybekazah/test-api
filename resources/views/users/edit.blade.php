@@ -44,7 +44,15 @@
                 <label for="birthday" class="form-label">birthday</label>
                 <input class="form-control mb-3" type="text" name="birthday" id="birthday" placeholder="{{$user['birthday']}}">
                 <button class="btn btn-success m-3" type="submit">Edit</button>
+{{--                <ul class="list-group">--}}
 
+{{--                    @foreach($roles as $key => $value)--}}
+{{--                        <li class="list-group-item">--}}
+{{--                            <input class="form-check-input me-1" type="radio" name="roles" value="{{$key + 1}}" id="{{$key}}">--}}
+{{--                            <label class="form-check-label" for="{{$key}}">{{$value}}</label>--}}
+{{--                        </li>--}}
+{{--                    @endforeach--}}
+{{--                </ul>--}}
             </form>
         </div>
     </div>

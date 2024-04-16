@@ -17,7 +17,7 @@ class UserService implements IUserService
 
     public function create()
     {
-        return RoleEnum::values();
+//        return RoleEnum::values();
 
     }
 
@@ -40,7 +40,8 @@ class UserService implements IUserService
 
     public function update(array $input, string $id)
     {
-        User::query()->where('id', $id)->update($input);
+        $user = User::query()->where('id', $id)->update($input);
+        $user->roles()->sync($input['roles'] ?? []);
         return User::query()->findOrFail($id);
     }
 

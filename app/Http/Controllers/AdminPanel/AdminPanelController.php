@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use \App\Http\Requests\Admin\AdminLoginRequest;
+use App\Models\User;
 
 class AdminPanelController extends Controller
 {

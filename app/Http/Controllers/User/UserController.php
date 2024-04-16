@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = $this->userService->create();
+        $roles = RoleEnum::values();
         return view('users.create', compact('roles'));
     }
 
@@ -60,8 +60,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        $roles = RoleEnum::values();
         $user = $this->userService->edit($id);
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact(['user', 'roles']));
     }
 
     /**

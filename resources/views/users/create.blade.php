@@ -49,9 +49,7 @@
                 <label for="birthday" class="form-label">birthday</label>
                 <input class="form-control mb-3" type="text" name="birthday" id="birthday"
                        placeholder="{{old('birthday') ?? NULL}}">
-
                 <ul class="list-group">
-
 
                     @foreach($roles as $key => $value)
                         <li class="list-group-item">

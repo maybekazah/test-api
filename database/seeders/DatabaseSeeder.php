@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Enums\RoleEnum;
+use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -40,6 +41,6 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(10)->create();
 
-
+        Post::factory(10)->create();
     }
 }

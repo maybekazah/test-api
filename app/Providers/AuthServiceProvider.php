@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -22,6 +23,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+//        $user = User::query()->find(auth()->user()->id);
+//        $user->roles->containsStrict('id', 1);
+
 
 //        $this->registerPolicies();
 //        Gate::define('delete-user', function () use (, ) {

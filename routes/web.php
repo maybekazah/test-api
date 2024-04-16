@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPanel\AdminPanelController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
-
-
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('posts/create', [PostController::class, 'store'])->name('posts.store');
