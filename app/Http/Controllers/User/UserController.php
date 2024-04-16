@@ -9,6 +9,7 @@ use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Auth\Access\Gate;
 
 class UserController extends Controller
 {
@@ -42,6 +43,8 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
+
+        $this->authorize('create-user');
         $user = $this->userService->store($request->validated());
         return view('users.show', compact('user'));
     }
@@ -70,6 +73,7 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, string $id)
     {
+        $this->authorize('edit-user');
         $user = $this->userService->update($request->validated(), $id);
         return view('users.show', compact('user'));
     }
@@ -79,6 +83,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete-user');
         $this->userService->destroy($id);
         return $this->index();
     }

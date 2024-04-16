@@ -16,9 +16,13 @@
                 phone: {{$user['phone']}}<br>
                 birthday: {{$user['birthday']}}<br>
             </div>
+
+            @can('edit-user')
             <div class="container">
                 <a href="{{route('users.edit', $user['id'])}}">Edit</a>
             </div>
+            @endcan
+            @can('delete-user')
             <div class="container">
                 <form action="{{route('users.destroy', $user['id'])}}" method="POST">
                     @csrf
@@ -26,5 +30,6 @@
                     <button class="btn btn-danger m-3" type="submit">Delete</button>
                 </form>
             </div>
+            @endcan
         </div>
 @endsection('body')

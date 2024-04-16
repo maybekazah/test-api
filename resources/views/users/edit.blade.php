@@ -1,10 +1,11 @@
 @extends('admin.layouts.main')
 @section('title')
-    Create User
+    edit User
 @endsection('title')
 @section('body')
     <div class="container">
         <div class="input-group mb-3">
+            @can('edit-user')
             <form action="{{route('users.update', $user['id'])}}" method="POST">
                 @csrf
                 @method('PATCH')
@@ -54,6 +55,7 @@
 {{--                    @endforeach--}}
 {{--                </ul>--}}
             </form>
+            @endcan
         </div>
     </div>
 @endsection('body')

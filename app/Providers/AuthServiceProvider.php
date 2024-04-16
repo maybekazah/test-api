@@ -24,13 +24,28 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-//        $user = User::query()->find(auth()->user()->id);
-//        $user->roles->containsStrict('id', 1);
+        $this->registerPolicies();
 
+        Gate::define('edit-user', function (User $user) {
+            if ($user->roles->containsStrict('id', 3)) {
+                return true;
+            }
+            return false;
+        });
 
-//        $this->registerPolicies();
-//        Gate::define('delete-user', function () use (, ) {
-//        return true;
-//        });
+        Gate::define('create-user', function (User $user) {
+            if ($user->roles->containsStrict('id', 3)) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('delete-user', function (User $user) {
+            if ($user->roles->containsStrict('id', 3)) {
+                return true;
+            }
+            return false;
+        });
+
     }
 }

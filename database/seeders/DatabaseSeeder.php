@@ -26,6 +26,11 @@ class DatabaseSeeder extends Seeder
             'email' => '123@123.com',
             'password' => Hash::make('123123'),
         ]);
+        \App\Models\User::query()->updateOrCreate([
+            'name' => '2',
+            'email' => '2@2.com',
+            'password' => Hash::make('222'),
+        ]);
 
 // таблица ролей заполнение
         $roles = RoleEnum::values();
@@ -37,6 +42,10 @@ class DatabaseSeeder extends Seeder
         DB::table('role_user')->insert([
             'user_id' => 1,
             'role_id' => 3
+        ]);
+        DB::table('role_user')->insert([
+            'user_id' => 2,
+            'role_id' => 2
         ]);
 
         \App\Models\User::factory(10)->create();
