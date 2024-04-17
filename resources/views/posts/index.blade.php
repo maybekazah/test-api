@@ -3,7 +3,9 @@
     Posts
 @endsection('title')
 @section('body')
-    <div class="container"><a href="{{route('posts.create')}}">create</a></div>
+    <div class="container">
+        <a href="{{route('posts.create')}}">create</a>
+    </div>
     <div class="container">Posts</div>
     @foreach($posts as $post)
         id : {{$post['id']}}<br>

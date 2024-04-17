@@ -43,7 +43,6 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-
         $this->authorize('create-user');
         $user = $this->userService->store($request->validated());
         return view('users.show', compact('user'));

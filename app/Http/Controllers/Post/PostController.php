@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PostStoreRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -28,9 +34,11 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
-        //
+        Post::query()->create($request->validated());
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
