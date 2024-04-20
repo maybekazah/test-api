@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,13 +34,17 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 
-    public function roles()
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'role_user');
     }
 
-    public function departnemts()
+    public function departments(): BelongsToMany
     {
         return $this->belongsToMany(Department::class, 'department_user');
     }

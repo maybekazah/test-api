@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\DepartmentEnum;
 use App\Enums\RoleEnum;
+use App\Models\Department;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
@@ -36,6 +38,11 @@ class DatabaseSeeder extends Seeder
         $roles = RoleEnum::values();
         foreach ($roles as $role) {
             Role::query()->firstOrCreate(['type' => $role]);
+        }
+
+        $departments = DepartmentEnum::values();
+        foreach ($departments as $department) {
+            Department::query()->firstOrCreate(['title' => $department]);
         }
 
 // запись в таблице user_roles, присваеваем роль админу
