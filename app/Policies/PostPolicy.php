@@ -7,11 +7,21 @@ use App\Models\User;
 
 class PostPolicy
 {
+//    public function before(User $user): bool
+//    {
+//
+//        if ($user->roles->containsStrict('id', 3)) {
+//            return true;
+//        }
+//        return false;
+//    }
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
+
         if ($user->roles->containsStrict('id', 3)) {
             return true;
         }
@@ -23,14 +33,20 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        //
+
+        if ($user->roles->containsStrict('id', 3)) {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
+
     {
+
         if ($user->roles->containsStrict('id', 3)) {
             return true;
         }
@@ -42,6 +58,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
+
         if ($user->roles->containsStrict('id', 3)) {
             return true;
         }
@@ -53,7 +70,10 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        //
+        if ($user->roles->containsStrict('id', 3)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -61,7 +81,10 @@ class PostPolicy
      */
     public function restore(User $user, Post $post): bool
     {
-        //
+        if ($user->roles->containsStrict('id', 3)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -69,6 +92,9 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        //
+        if ($user->roles->containsStrict('id', 3)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -8,8 +8,12 @@
     </div>
     <div class="container">Posts</div>
     @foreach($posts as $post)
+        <div class="list-group">
         id : {{$post['id']}}<br>
-        title : {{$post['title']}}<br>
-        description : {{$post['description']}}<br><br>
+        title : {{$post['title']}} ><br>
+        description : {{$post['description']}}<br>
+            <a href="{{route('posts.show', $post)}}">Show</a><br>
+            <hr>
+        </div>
     @endforeach
 @endsection('body')
