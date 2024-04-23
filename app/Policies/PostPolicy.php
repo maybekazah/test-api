@@ -7,21 +7,19 @@ use App\Models\User;
 
 class PostPolicy
 {
-//    public function before(User $user): bool
-//    {
-//
-//        if ($user->roles->containsStrict('id', 3)) {
-//            return true;
-//        }
-//        return false;
-//    }
+    public function before(User $user): bool
+    {
+        if ($user->roles->containsStrict('id', 3)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-
         if ($user->roles->containsStrict('id', 3)) {
             return true;
         }
@@ -46,7 +44,6 @@ class PostPolicy
     public function create(User $user): bool
 
     {
-
         if ($user->roles->containsStrict('id', 3)) {
             return true;
         }

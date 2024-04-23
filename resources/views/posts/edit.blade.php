@@ -5,7 +5,7 @@
 @section('body')
     <div class="container">Posts</div>
     <div class="container">
-            <form action="{{route('posts.update', $post['id'])}}" method="POST">
+            <form action="{{route('posts.update', $post)}}" method="POST">
                 @csrf
                 @method('PATCH')
                 <label for="title" class="form-label">title</label>
