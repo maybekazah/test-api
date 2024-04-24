@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\CommentTypeEnum;
 use App\Enums\DepartmentEnum;
 use App\Enums\RoleEnum;
+use App\Enums\TypeEnum;
+use App\Models\Blog;
+use App\Models\CommentType;
 use App\Models\Department;
 use App\Models\Post;
 use App\Models\Role;
@@ -45,6 +49,7 @@ class DatabaseSeeder extends Seeder
             Department::query()->firstOrCreate(['title' => $department]);
         }
 
+
 // запись в таблице user_roles, присваеваем роль админу
         DB::table('role_user')->insert([
             'user_id' => 1,
@@ -57,6 +62,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(10)->create();
 
-        Post::factory(10)->create();
+        Post::factory(30)->create();
+        Blog::factory(30)->create();
+
     }
 }

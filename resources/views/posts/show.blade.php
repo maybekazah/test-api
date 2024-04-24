@@ -8,6 +8,7 @@
         id : {{$post['id']}}<br>
         title : {{$post['title']}} ><br>
         description : {{$post['description']}}<br>
+
         <a href="{{route('posts.edit', $post)}}">edit</a><br>
         <hr>
     </div>

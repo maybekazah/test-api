@@ -19,6 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        $post = Post::query()->find(1);
+        dump($post->comments);
         $posts = Post::all();
         return view('posts/index', compact('posts'));
     }

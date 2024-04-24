@@ -34,6 +34,15 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function blogs(): HasMany
+    {
+        return $this->hasMany(Blog::class);
+    }
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
