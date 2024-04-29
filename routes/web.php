@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPanel\AdminPanelController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Tag\TagController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,7 @@ Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AdminPanelController::class, 'login'])->name('admin.login');
     Route::post('admin/login', [AdminPanelController::class, 'loginProcess'])->name('admin.login_process');
 
-
 });
-
 
 Route::middleware('auth')->group(function () {
 
@@ -41,6 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::patch('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
     Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+    Route::get('tags', [TagController::class, 'index'])->name('tags.index');
+    Route::get('tags/create', [TagController::class, 'create'])->name('tags.create');
+    Route::post('tags/create', [TagController::class, 'store'])->name('tags.store');
 
 });
 

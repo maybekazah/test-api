@@ -34,7 +34,7 @@
                         @auth()
                         <div class="col-sm">
                             <a href="{{route('blogs.edit', $blog)}}">
-                                <button type="submit" class="btn btn-success">Edit Blog</button>
+                                <button type="submit" class="btn btn-success">Edit</button>
                             </a>
                         </div>
 
@@ -43,7 +43,7 @@
                             <form action="{{route('blogs.destroy', $blog['id'])}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete Blog</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
 
                         </div>

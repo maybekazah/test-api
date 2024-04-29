@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\BlogStoreRequest;
+use App\Http\Requests\Blog\BlogUpdateRequest;
 use App\Models\Blog;
-use Illuminate\Http\Request;
+use App\Models\Tag;
+
 
 class BlogController extends Controller
 {
@@ -22,7 +24,8 @@ class BlogController extends Controller
 
     public function store(BlogStoreRequest $request)
     {
-        return Blog::query()->create($request->validated());
+        $blog = Blog::query()->create($request->validated());
+        return view('blogs.show', compact('blog'));
     }
 
     public function show(Blog $blog)
@@ -32,9 +35,16 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        return view('blogs/edit', compact('blog'));
+        $tags = Tag::all();
+        return view('blogs/edit', compact(['blog', 'tags']));
     }
 
+
+    public function update(Blog $blog, BlogUpdateRequest $request)
+    {
+        dump($blog);
+        dd($request);
+    }
 
     public function destroy($id)
     {

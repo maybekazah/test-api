@@ -14,17 +14,30 @@
                         @csrf
                         <div class="row">
                             <div class="col-sm">
-                                <b>Title:</b> <br>
-                                <b>Description:</b> <br>
+                                <label for="title" class="form-label"><b>Title:</b></label>
+                                <input type="text" name="title" class="form-control" id="title"
+                                       placeholder="{{old('title') ?? NULL}}">
                             </div>
                             <div class="col-sm">
+                                <label for="description" class="form-label"><b>Description:</b></label>
+                                <input type="text" name="description" class="form-control" id="description"
+                                       placeholder="{{old('description') ?? NULL}}">
+                            </div>
+                            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                            <div class="col-sm">
                                 <b>Tags:</b>
+                                // TODO теги Сделать
                             </div>
                             <div class="col-sm">
                                 <button type="submit" class="btn btn-success">Store</button>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="col-sm">
+                    <a href="{{route('tags.index')}}">
+                        <button type="submit" class="btn btn-primary">Tags</button>
+                    </a>
                 </div>
                 <div class="col-sm">
                     <a href="{{route('blogs.index')}}">
