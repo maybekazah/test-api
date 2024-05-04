@@ -26,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userService->index();
-        return view('users/index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -35,7 +35,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = RoleEnum::values();
-        return view('users/create', compact('roles'));
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = $this->userService->show($id);
-        return view('users/show', compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $roles = RoleEnum::values();
         $user = $this->userService->edit($id);
-        return view('users/edit', compact(['user', 'roles']));
+        return view('users.edit', compact(['user', 'roles']));
     }
 
     /**
@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $this->authorize('edit-user');
         $user = $this->userService->update($request->validated(), $id);
-        return view('users/show', compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**

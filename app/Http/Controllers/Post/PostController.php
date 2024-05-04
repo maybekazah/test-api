@@ -21,7 +21,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts/index', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts/create');
+        return view('posts.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class PostController extends Controller
     {
         Post::query()->create($request->validated());
         $posts = Post::all();
-        return view('posts/index', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -47,7 +47,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts/show', compact('post'));
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -55,7 +55,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts/edit', compact('post'));
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -64,8 +64,8 @@ class PostController extends Controller
     public function update(PostUpdateRequest $request, Post $post)
     {
         Post::query()->where('id', $post['id'])->update($request->validated());
-        $post = Post::query()->find($post['id']);
-        return view('posts/show', compact('post'));
+        $post = Post::query()->findOrFail($post['id']);
+        return view('posts.show', compact('post'));
     }
 
     /**

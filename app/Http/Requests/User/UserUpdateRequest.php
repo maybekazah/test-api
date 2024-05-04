@@ -25,17 +25,17 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string',
-            'email' => 'string|email',
-            'image' => 'string',
-            'about' => 'string',
-            'type' => 'string',
-            'github' => 'string',
-            'city' => 'string',
-            'phone' => 'string',
-            'is_finished' => 'boolean',
-            'birthday' => 'string',
-            'roles' => 'string',
+            'name' => 'required|string',
+            'email' => 'required|email|string',
+//            'image' => 'string|required',
+//            'about' => 'string|required',
+            'type' => 'required|string',
+            'github' => 'required|string',
+            'city' => 'required|string',
+            'phone' => 'required|string',
+//            'is_finished' => 'boolean|required',
+            'birthday' => 'required|string',
+//            'roles' => 'string|required',
         ];
     }
 }

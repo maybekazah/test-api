@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanel\AdminPanelController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\PolygonController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Tag\TagController;
 use App\Http\Controllers\User\UserController;
@@ -30,10 +31,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('posts/create', [PostController::class, 'store'])->name('posts.store');
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::patch('posts/{post}', [PostController::class, 'update'])->name('posts.update');
-    Route::post('posts/create', [PostController::class, 'store'])->name('posts.store');
+
 
     Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
     Route::post('blogs/create', [BlogController::class, 'store'])->name('blogs.store');
@@ -49,6 +51,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+
+Route::get('polygon', [PolygonController::class, 'index'])->name('polygon');
 
 
 

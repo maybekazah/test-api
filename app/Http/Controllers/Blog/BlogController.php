@@ -14,12 +14,13 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
-        return view('blogs/index', compact('blogs'));
+        return view('blogs.index', compact('blogs'));
     }
 
     public function create()
     {
-        return view('blogs/create');
+        $tags = Tag::all();
+        return view('blogs.create', compact('tags'));
     }
 
     public function store(BlogStoreRequest $request)
@@ -36,7 +37,7 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $tags = Tag::all();
-        return view('blogs/edit', compact(['blog', 'tags']));
+        return view('blogs.edit', compact(['blog', 'tags']));
     }
 
 

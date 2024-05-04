@@ -28,6 +28,7 @@ class BlogStoreRequest extends FormRequest
             'user_id' => 'required|integer',
             'title' => 'required|string',
             'description' => 'required|string',
+            'tag' => 'required|string'
         ];
     }
 }

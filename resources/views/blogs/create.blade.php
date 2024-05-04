@@ -25,8 +25,13 @@
                             </div>
                             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                             <div class="col-sm">
-                                <b>Tags:</b>
-                                // TODO теги Сделать
+                                <label for="tag" class="form-label">Tags:</label>
+                                <input type="text" class="form-control" list="tag" name="tag">
+                                <datalist id="tag">
+                                    @foreach($tags as $tag)
+                                        <option value="{{$tag['title']}}"></option>
+                                    @endforeach
+                                </datalist>
                             </div>
                             <div class="col-sm">
                                 <button type="submit" class="btn btn-success">Store</button>

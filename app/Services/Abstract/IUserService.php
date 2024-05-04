@@ -2,8 +2,7 @@
 
 namespace App\Services\Abstract;
 
-use App\Http\Requests\User\UserStoreRequest;
-use App\Http\Requests\User\UserUpdateRequest;
+
 
 interface IUserService
 {
